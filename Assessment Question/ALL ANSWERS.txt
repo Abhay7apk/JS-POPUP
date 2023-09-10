@@ -1,0 +1,113 @@
+ANSWER 1 :
+Cookies, Local Storage, and Session Storage are client-side storage options available in web browsers, but they serve different purposes and have distinct characteristics:
+
+1. Cookies:
+   Purpose = Cookies are primarily used for storing small pieces of data that need to persist across requests and sessions. They are often used for session management, user authentication, and tracking user behavior.
+   Storage Limit =  Cookies have a relatively small storage limit of about 4 KB per cookie, and most browsers have a limit on the total number of cookies per domain (usually around 20 cookies per domain).
+   Expiration = Cookies can have both session cookies (which expire when the browser session ends) and persistent cookies (which have an expiration date set by the server).
+   Accessibility = Cookies are accessible both on the server and the client side, making them suitable for tasks like server-side authentication and tracking user behavior.
+   Security = Cookies are sent with every HTTP request, which can potentially expose sensitive information if not handled securely.
+
+2. Local Storage:
+   Purpose = Local Storage is designed for storing larger amounts of data (compared to cookies) on the client side. It's suitable for caching data, storing user preferences, and other application-specific data.
+   Storage Limit = Local Storage typically has a limit of 5-10 MB per domain, which is significantly larger than cookies.
+   Expiration = Data stored in Local Storage persists indefinitely until it's explicitly removed by the web application or the user clears their browser cache.
+   Accessibility = Local Storage is accessible only on the client side, and its data is not sent with HTTP requests, which can improve performance and security.
+   Security = Local Storage is considered more secure than cookies because its data is not automatically sent with each request.
+
+3. Session Storage:
+   Purpose = Session Storage is similar to Local Storage, but it's designed to store data that should be available only for the duration of a single browser session. It's often used for temporary data storage.
+   Storage Limit = Session Storage typically has the same storage limit as Local Storage (around 5-10 MB per domain).
+   Expiration = Data stored in Session Storage is cleared when the browser session ends, making it suitable for temporary data storage.
+   Accessibility = Like Local Storage, Session Storage is accessible only on the client side and does not send data with HTTP requests.
+   Security = Session Storage is also more secure than cookies because its data is not sent with every request.
+
+******************************************************************************************************************************************
+
+ANSWER 2 :
+Wrapping the entire content of a JavaScript source file in a function block is a common practice known as the "Immediately Invoked Function Expression" (IIFE) pattern. The primary reasons for doing this are:
+
+Encapsulation: It helps encapsulate the code within a private scope. Variables declared within the function block are not accessible from the outside, preventing naming conflicts and unintentional modifications of global variables.
+
+Isolation: It isolates the code from the global scope. This is particularly important in larger applications where multiple scripts may be loaded, reducing the risk of global variable clashes and unexpected behavior.
+
+Modularity: It enables modular code organization. Each script can have its own IIFE, making it easier to manage and understand the codebase. Modules can expose only the necessary functionality via a well-defined interface, enhancing code maintainability.
+
+Protection: It protects against variable leakage. Variables declared with var without the var keyword would normally become global. By wrapping code in an IIFE, this risk is mitigated, promoting cleaner and safer code.
+
+******************************************************************************************************************************************
+
+ANSWER 3 :
+OUTPUT ->
+0.30000000000000004
+false
+Explanation ->
+
+~ The first console.log(0.1 + 0.2); statement calculates the sum of 0.1 and 0.2, which should ideally be 0.3. However, due to the way floating-point numbers are represented in JavaScript (using IEEE 754 sTandard), there can be precision issues. In this case, the result is not exactly 0.3 but a very close approximation, which is why you see 0.30000000000000004.
+
+~ The second console.log(0.1 + 0.2 == 0.3); statement checks if the result of 0.1 + 0.2 is equal to 0.3. Since the sum is not exactly 0.3 (as shown in the first console.log), the comparison returns false. This behavior is a common source of confusion when working with floating-point numbers in JavaScript, and it's recommended to use tolerance-based comparisons (e.g., within a small delta) when comparing floating-point numbers to account for such precision issues.
+
+******************************************************************************************************************************************
+
+ANSWER :
+function sum(a, b) {
+    if (b !== undefined) {
+        // If two arguments are provided, return their sum
+        return a + b;
+    } else {
+        // If only one argument is provided, return a function that takes another argument
+        return function(b) {
+            return a + b;
+        };
+    }
+}
+
+console.log(sum(2, 3));    // Outputs 5
+console.log(sum(2)(3));    // Outputs 5
+
+
+******************************************************************************************************************************************
+
+ANSWER :
+
+THE OUTPUT WILL BE ->
+10
+1
+
+STEPS ->
+
+var length = 10; -> Declared a variable length with a value of 10.
+
+function fn() { console.log(this.length); } -> A function fn that logs this.length. In this function, this refers to the global object, which, in a browser environment, is usually the window object. So, this.length will refer to the length variable declared earlier with a value of 10.
+
+var obj = { length: 5, method: function(fn) { fn(); arguments[0](); } }; -> An object obj with a length property set to 5. Inside obj, theres a method that takes a function fn as a parameter. This method first calls fn(), and then it attempts to call arguments[0](). arguments[0] refers to the fn function passed as an argument.
+
+obj.method(fn, 1); -> Call the method of the obj object, passing fn as an argument.
+
+Breaking down on what will happens when fn() and arguments[0]() are called within the method:
+
+fn() is called directly within the method. Inside fn, this.length refers to the length variable declared in the global scope, which is 10. So, it logs 10.
+
+arguments[0]() is essentially calling the fn function. when fn is called this way, it loses its reference to the global this, and this becomes the arguments object of the function.
+
+The arguments object doesn't have a length property like the global object does. Instead, it has an arguments.length property that represents the number of arguments passed to the function.
+
+In this case, arguments.length will be 1 because it has passed one argument (fn) to the function.
+
+So, when we try to execute arguments[0](), it's equivalent to calling fn(), and it logs 1 because arguments.length is 1.
+
+Therefore, the output is what it is ->
+10
+1
+
+
+******************************************************************************************************************************************
+
+****************************************************************FINISHED******************************************************************
+
+
+
+
+
+
+
