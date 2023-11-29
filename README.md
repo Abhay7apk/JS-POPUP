@@ -2,7 +2,7 @@ NAME : Abhay tiwari
 abhaytiw33@gmail.com
 
 
-This is made for Wingify Assessment, to use it just clone the project and folders, and run the index.html in both folders.
+To use it just clone the project and folders, and run the index.html in both folders.
 MADE WITH JS, HTML/CSS AND JQUERY FOR DESKTOP AND MOBILE AS MENTIONED IN THE DESRIPTION.
 
 FOR DESKTOP:
